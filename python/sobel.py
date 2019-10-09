@@ -26,9 +26,25 @@ def GrayScale(in_arr):
             tmp_gs[pad+y, pad+x, 2] = tmp_gray
     return tmp_gs
 
+def Comic(in_arr,scr):
+    tmp_c = in_arr.copy()
+    for y in range(H):
+        for x in range(W):
+            tmp_comic = (in_arr[y,x,0] + in_arr[y,x,1] + in_arr[y,x,2])
+            if tmp_comic < 127:
+                tmp_comic = 0
+            elif tmp_comic < 192:
+                tmp_comic = (scr[y,x,0] + scr[y,x,1] + scr[y,x,2])
+            elif tmp_comic < 255:
+                tmp_comic = 255
+            tmp_c[pad+y, pad+x, 0] = tmp_comic
+            tmp_c[pad+y, pad+x, 1] = tmp_comic
+            tmp_c[pad+y, pad+x, 2] = tmp_comic
+    return tmp_c
 
 
 # Read image
+screen = cv2.imread("screen.jpg")
 img = cv2.imread("lena.png") # BGR order
 H, W, C = img.shape
 K_size = 3
@@ -38,7 +54,11 @@ pad = K_size // 2
 out = np.zeros((H + pad*2, W + pad*2, C), dtype=np.float)
 out[pad:pad+H, pad:pad+W] = img.copy().astype(np.float)
 
+scr = np.zeros((H + pad*2, W + pad*2, C), dtype=np.float)
+scr[pad:pad+H, pad:pad+W] = screen.copy().astype(np.float)
+
 gray = GrayScale(out)
+comic = Comic(gray,scr)
 
 for y in range(H):
     for x in range(W):
@@ -51,7 +71,7 @@ out = out[pad:pad+H, pad:pad+W].astype(np.uint8)
 
 # Save result
 
-cv2.imwrite("gs.png", gray)
+cv2.imwrite("comic.png", comic)
 cv2.imwrite("out.png", out)
 cv2.imshow("result", out)
 cv2.waitKey(0)
