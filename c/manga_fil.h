@@ -9,6 +9,6 @@ typedef hls::stream<interface_t> stream_t;
 
 void manga_filter(stream_t&, stream_t&, volatile int *);
 int rgb2y(int);
-int edge_fil(int, int, int, int, int, int, int, int, int);
+int edge_fil(int, int, int, int, int, int, int, int, int, int);
 int ternary(int, int);
 
