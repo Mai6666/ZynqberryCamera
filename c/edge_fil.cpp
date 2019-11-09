@@ -1,6 +1,4 @@
 #include "manga_fil.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int edge_fil(int a0,int a1,int a2,int b0,int b1,int b2,int c0,int c1,int c2){
 	int x, y, result;
