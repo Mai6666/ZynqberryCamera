@@ -10,7 +10,6 @@ int rgb2y(int pix){
 
   if(R==G && G==B){
     return R;
-    std::cout << "if" << std::endl;
   }
   else{
     value = (0.299 * R + 0.587 * G + 0.144 * B);
