@@ -33,9 +33,9 @@ int main(){
 			line_buf[1][x] = pix.data;
 
 			// 自分の実装した関数以外をコメントアウトしてください
-			out.data = rgb2y(pix.data);
+			//out.data = rgb2y(pix.data);
 			out.data = edge_fil(pix_mat[0][0], pix_mat[0][1], pix_mat[0][2],pix_mat[1][0], pix_mat[1][1], pix_mat[1][2],pix_mat[2][0], pix_mat[2][1], pix_mat[2][2], 200);
-			out.data = ternary(pix.data, screen.data[y*src.rows+x]);
+			//out.data = ternary(pix.data, screen.data[y*src.rows+x]);
 			stream_out << out;
 		}
 	}
